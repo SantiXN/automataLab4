@@ -260,7 +260,8 @@ def rename_states(states, transitions, outputs):
 
 def nfa_to_dfa(input_file, output_file):
     transitions, outputs, states, input_symbols = read_moore2(input_file)
-    input_symbols.remove('ε')
+    if 'ε' in input_symbols:
+        input_symbols.remove('ε')
 
     epsilon_closure = compute_epsilon_closure(states, transitions)
     print(epsilon_closure)
